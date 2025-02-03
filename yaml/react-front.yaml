@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-test
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: react-test
+  template:
+    metadata:
+      labels:
+        app: react-test
+    spec:
+      containers:
+      - name: react-test
+        image: <image-name>
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-test-service
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+  selector:
+    app: react-test
